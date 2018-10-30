@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author zhukai
  *
  */
-public class ResultEntity{
+public class ResultEntity implements Serializable{
 	
 	/**
 	 * 
