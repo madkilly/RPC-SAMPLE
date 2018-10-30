@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta content='text/html;charset=utf-8' http-equiv='content-type'>
+<title>Echarts图表Demo</title>
+<script src="js/esl/esl.js"></script>
+<script src="js/jquery.js"></script>
+</head>
+<body>
+	<div id="link" style="margin:0 auto; margin-top:50px; width: 800px; height:20px;">
+		<a href="#" onclick="toLine()">折线图示例</a>
+		<a href="#" onclick="toBar()">柱状图示例</a>
+	</div>
+	<div id="pie" style="margin:0 auto; margin-top:20px; width: 800px; height: 600px;"></div>
+	<script type="text/javascript">
+	var fileLocation ='js/echarts';
+	require.config({
+	    paths:{ 
+	        echarts: fileLocation,
+	        'echarts/chart/line': fileLocation,
+	        'echarts/chart/bar': fileLocation,
+	        'echarts/chart/pie': fileLocation
+	 
+	    }
+	});
+	
+	// 作为入口
+	require(
+	    [
+	        'echarts',
+	        'echarts/chart/pie'
+	    ], 
+		
+		displayChart
+	    
+	);
+	
+	function displayChart(ec) {
+	   	//饼图
+		var pieChart = ec.init(document.getElementById('pie'));
+		//获得Pie图的选项和数据
+			$.get('/rpc-client/options/pie', function (data) {
+			var obj = eval('(' + data + ')');
+			pieChart.setOption(obj);
+		});
+	}
+	
+	function toBar(){
+		window.location.href = "/rpc-client/bar.html";
+	}
+	
+	function toLine(){
+		window.location.href = "/rpc-client/line.html";
+	}
+	</script>
+	</body>
+</html>
