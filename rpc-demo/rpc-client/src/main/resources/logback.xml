@@ -16,6 +16,11 @@
 			<pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%X{X-traceId}] %X{X-sysId} %X{X-userId} [%X{current_app_id}] [%X{current_provider_id}] [%X{current_tenant_id}] [%X{current_user_name}] [%thread] %-5level %logger{36} - %msg%n</pattern>
 		</encoder>
 	</appender>
+	
+	<!-- 自定义特殊包的日志级别 -->
+    <logger name="com.yonyou.cloud.middleware" level="WARN" />
+    <logger name="com.netflix.discovery" level="WARN" />
+	
 	<root level="INFO">
 		<appender-ref ref="console" />
 		<appender-ref ref="rollingFile" />
